@@ -1,11 +1,11 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* .post-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  align-items: flex-start;
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

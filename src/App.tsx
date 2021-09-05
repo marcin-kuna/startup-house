@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import PostList from "./components/PostList";
@@ -25,7 +25,7 @@ function App() {
           />
           <Route
             exact
-            path="/details"
+            path={`/posts/${postId}`}
             component={() => <PostDetails postId={postId} />}
           />
           {/* <PostList setPostId={setPostId} />

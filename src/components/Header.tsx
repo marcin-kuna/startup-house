@@ -6,7 +6,7 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 const useStyles = makeStyles({
   root: {
-    border: "1px solid black",
+    border: "2px solid black",
     height: 80,
     padding: "0 20px",
     display: "flex",
@@ -23,9 +23,9 @@ interface IPost {
   };
 }
 
-function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-  event.preventDefault();
-}
+// function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+//   event.preventDefault();
+// }
 
 export default function Header({ post }: IPost) {
   const classes = useStyles();
@@ -37,7 +37,7 @@ export default function Header({ post }: IPost) {
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
       >
-        <Link color="textPrimary" href="/" onClick={handleClick}>
+        <Link color="textPrimary" href="/">
           Posts
         </Link>
         {post.title ? <Typography>{post.title}</Typography> : null}

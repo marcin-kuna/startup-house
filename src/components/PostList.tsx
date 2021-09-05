@@ -1,6 +1,40 @@
-import { Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 import Header from "./Header";
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+    maxWidth: "50%",
+    border: "2px solid black",
+    borderRadius: 0,
+    margin: "30px auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+  },
+
+  title: {
+    fontSize: 32,
+    fontWeight: 700,
+    lineHeight: 1.1,
+    marginBottom: 20,
+  },
+  link: {
+    textDecoration: "none",
+    border: "2px solid black",
+    borderRadius: 10,
+    padding: "7px 12px",
+    color: "black",
+    margin: "0 10px 10px 0",
+    fontWeight: 500,
+  },
+});
 
 interface IPost {
   body: string;
@@ -10,23 +44,21 @@ interface IPost {
 }
 
 export default function PostList({ setPostId }: any) {
+  const classes = useStyles();
   const emptyPost = {
     title: "",
   };
 
   const [data, setData] = useState<IPost[]>([]);
-  async function getPosts(): Promise<any> {
-    await fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((data) => setData(data));
-  }
-
-  const setId = (id: number): any => {
-    setPostId(id);
-    console.log(id);
-  };
 
   useEffect(() => {
+    async function getPosts(): Promise<any> {
+      await fetch("https://jsonplaceholder.typicode.com/posts")
+        .then((response) => response.json())
+        .then((data) => setData(data))
+        .catch((err) => console.log(err));
+    }
+
     getPosts();
   }, []);
 
@@ -35,15 +67,28 @@ export default function PostList({ setPostId }: any) {
   return (
     <div>
       <Header post={emptyPost} />
+
       {data.map((post) => {
         return (
-          <div key={post.id}>
-            <h1>{post.title}</h1>
-            <p>{post.body}</p>
-            <Link href="/details" onClick={() => setId(post.id)}>
-              Full Version
-            </Link>
-          </div>
+          <Card className={classes.root} key={post.id}>
+            <CardContent>
+              <Typography className={classes.title} component="h1">
+                {post.title}
+              </Typography>
+              <Typography component="p">{post.body}</Typography>
+            </CardContent>
+            <CardActions>
+              <Link
+                className={classes.link}
+                onClick={() => {
+                  setPostId(post.id);
+                }}
+                to={`/posts/${post.id}`}
+              >
+                Full Version
+              </Link>
+            </CardActions>
+          </Card>
         );
       })}
     </div>
