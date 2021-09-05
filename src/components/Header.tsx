@@ -16,10 +16,7 @@ const useStyles = makeStyles({
 
 interface IPost {
   post: {
-    body?: string;
-    id?: number;
     title: string;
-    userId?: number;
   };
 }
 

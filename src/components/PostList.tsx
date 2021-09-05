@@ -43,7 +43,11 @@ interface IPost {
   userId: number;
 }
 
-export default function PostList({ setPostId }: any) {
+interface ISetPostId {
+  setPostId: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function PostList({ setPostId }: ISetPostId) {
   const classes = useStyles();
   const emptyPost = {
     title: "",
@@ -65,10 +69,9 @@ export default function PostList({ setPostId }: any) {
   return (
     <div>
       <Header post={emptyPost} />
-
-      {data.map((post) => {
-        return (
-          <ul>
+      <ul>
+        {data.map((post) => {
+          return (
             <Card className={classes.root} key={post.id} component="li">
               <CardContent>
                 <Typography className={classes.title} component="h1">
@@ -88,9 +91,9 @@ export default function PostList({ setPostId }: any) {
                 </Link>
               </CardActions>
             </Card>
-          </ul>
-        );
-      })}
+          );
+        })}
+      </ul>
     </div>
   );
 }

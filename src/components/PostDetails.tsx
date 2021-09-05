@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     lineHeight: 1.1,
   },
   comments: {
-    padding: "0 20px",
+    padding: "0 20px 50px",
     minWidth: 280,
     maxWidth: "50%",
   },
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 interface IPost {
-  body?: string;
+  body: string;
   title: string;
 }
 
@@ -38,9 +38,13 @@ interface IComment {
   id: number;
 }
 
-export default function PostDetails({ postId }: any) {
+interface IPostId {
+  postId: number;
+}
+
+export default function PostDetails({ postId }: IPostId) {
   const classes = useStyles();
-  const [post, setPost] = useState<IPost>({ title: "" });
+  const [post, setPost] = useState<IPost>({ title: "", body: "" });
   const [comments, setComments] = useState<IComment[]>([]);
 
   useEffect(() => {
