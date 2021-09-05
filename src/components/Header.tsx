@@ -23,13 +23,8 @@ interface IPost {
   };
 }
 
-// function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-//   event.preventDefault();
-// }
-
 export default function Header({ post }: IPost) {
   const classes = useStyles();
-  console.log(post);
 
   return (
     <header className={classes.root}>

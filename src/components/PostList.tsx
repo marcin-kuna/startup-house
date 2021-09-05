@@ -62,33 +62,33 @@ export default function PostList({ setPostId }: any) {
     getPosts();
   }, []);
 
-  console.log(data);
-
   return (
     <div>
       <Header post={emptyPost} />
 
       {data.map((post) => {
         return (
-          <Card className={classes.root} key={post.id}>
-            <CardContent>
-              <Typography className={classes.title} component="h1">
-                {post.title}
-              </Typography>
-              <Typography component="p">{post.body}</Typography>
-            </CardContent>
-            <CardActions>
-              <Link
-                className={classes.link}
-                onClick={() => {
-                  setPostId(post.id);
-                }}
-                to={`/posts/${post.id}`}
-              >
-                Full Version
-              </Link>
-            </CardActions>
-          </Card>
+          <ul>
+            <Card className={classes.root} key={post.id} component="li">
+              <CardContent>
+                <Typography className={classes.title} component="h1">
+                  {post.title}
+                </Typography>
+                <Typography component="p">{post.body}</Typography>
+              </CardContent>
+              <CardActions>
+                <Link
+                  className={classes.link}
+                  onClick={() => {
+                    setPostId(post.id);
+                  }}
+                  to={`/posts/${post.id}`}
+                >
+                  Full Version
+                </Link>
+              </CardActions>
+            </Card>
+          </ul>
         );
       })}
     </div>
